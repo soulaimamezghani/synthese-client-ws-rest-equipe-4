@@ -1,25 +1,45 @@
-function chargerPersonnes() {// recupere mes info issu de serveur et remplir mon
+function chargerProduits() {// recupere mes info issu de serveur et remplir mon
 							// tab
-	$.getJSON("http://localhost:8080/ProjetEjbws/personnes/allPersonnes", function(data) {
-		// $:fait appel a java query //java script et jquery sont les mem ils
-		// recuperent les donnes
-		// data est le resultat de data est la boucle de A B C et D
-		// data recupere les donnes json et les mets dans la function data qui
+	$.getJSON("http://localhost:8080/synthese-serveur-ejb-ws-equipe-4-1/produits/allProduits", function(data) {
+		
 		$("#tableBody").html("");
 		for (i in data) {
 			$tr = $("<tr>");
-			$td = $("<td>").append(data[i]['id']);
-			$tr.append($td)// append comme concetination
-			$td = $("<td>").append(data[i]['nom']);
-			$tr.append($td);							// =append cest ajoute balise td
-			$td = $("<td>").append(data[i]['prenom']);$tr.append($td);					// filldans tr
-			$td = $("<td>").append(data[i]['age']);$tr.append($td);					// filldans tr
+			$td = $("<td>").append(data[i]['idProduit']);
+			$tr.append($td)
+			$td = $("<td>").append(data[i]['nomProduit']);
+			$tr.append($td);						
+			$td = $("<td>").append(data[i]['stock']);$tr.append($td);				
+			$td = $("<td>").append(data[i]['prix']);$tr.append($td);					
 			
-			$("#tableBody").append($tr);// td va recupere les valeur de data td
+			 $("#tableBody").append($tr);// td va recupere les valeur de data td
 										// transmet la valeur a tr et tr
 										// transmet ca a tableBody
 
 		}
 
+	});
+}
+
+function chargerMagasins() {// recupere mes info issu de serveur et remplir mon
+	// tab
+	$.getJSON("http://localhost:8080/synthese-serveur-ejb-ws-equipe-4-1/magasins/allMagasins", function(data) {
+		
+		$("#tableBody").html("");
+		for (i in data) {
+			$tr = $("<tr>");
+			$td = $("<td>").append(data[i]['idMagasin']);
+			$tr.append($td)
+			$td = $("<td>").append(data[i]['nomMagasin']);
+			$tr.append($td);						
+			$td = $("<td>").append(data[i]['codeMagasin']);$tr.append($td);				
+			$td = $("<td>").append(data[i]['prixDuLocal']);$tr.append($td);					
+			
+			$("#tableBody").append($tr);// td va recupere les valeur de data td
+			// transmet la valeur a tr et tr
+			// transmet ca a tableBody
+			
+		}
+		
 	});
 }
